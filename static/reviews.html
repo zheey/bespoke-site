@@ -1,0 +1,12 @@
+<div class="carousel-item" ng-repeat="review in reviews">
+    <div class="card p-3" style="border-color: white">
+        <blockquote class="blockquote mb-0 card-body">
+            <p>{{review.review}}</p>
+            <footer class="blockquote-footer">
+                <small class="text-muted">
+                    Our loving customer <cite title="Source Title">{{review.firstname + review.lastname}}</cite>
+                </small>
+            </footer>
+        </blockquote>
+    </div>
+</div>

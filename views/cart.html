@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bespokeApp" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Bespoke Cakes NG</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="container-fluid" ng-controller="bespokeController" >
+<nav class="navbar sticky-top navbar-expand-sm navbar-light " style="background-color: #E3AFBC;" ng-show="isLoggedIn">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto" style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item" >
+                <a class="nav-link"> Welcome to Bespoke Cakes, {{user.firstname}} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">LOG OUT</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: white;" id="navbig">
+    <a class="navbar-brand abs" href="/" style="font-family: 'Lobster', Georgia, Times, serif;font-size: 35px">
+        Bespoke &nbsp;<img src="/images/Bespokeicon%20.jpg" width="70" height="70" class="d-inline-block align-top" alt="">
+        &nbsp;Cakes NG
+        <span class="sr-only">(current)</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav " style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item">
+                <a class="nav-link" href="/wedding">WEDDING ORDER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/careers">CAREERS</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item">
+                <a class="nav-link" href="/blog">BLOG</a>
+            </li>
+            <li ng-hide="isLoggedIn" class="nav-item" ng-click="login()">
+                <a class="nav-link" href="/login">LOGIN</a>
+            </li>
+            <li ng-show="isLoggedIn" class="nav-item">
+                <a class="nav-link" href="/profile">MY PROFILE</a>
+            </li>
+            <li class="nav-item" ng-click="setContent('cart.html')">
+                <a href="#" class="nav-link" ><i class="fa fa-shopping-cart fa-2x" ></i>
+                    <span class='round round-sm green' ng-show="isLoggedIn">
+                          {{user.cart.length}}
+                      </span></a>
+            </li>
+            <li ng-hide="user.cart.length==0" class="nav-item">
+                <a class="nav-link" ng-click="checkout()" href="/shopping/checkout"><button class="btn" style="background-color: #5d001E; color: white">Checkout<i class="fa fa-shopping-cart" ></i></button></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section id="order" style="padding-top: 40px">
+    <div class="row justify-content-center">
+        <div class="col-md-8" id="login">
+    <table class="table table-bordered table-responsive table-hover" >
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in user.cart" ng-init="product = item.product[0]">
+                <td><img class="listImg"  ng-src="../images/{{product.imagefile}}" style="width: 100px;height: 50px"/></td>
+                <td>{{product.name}}</td>
+                <td>{{product.price | currency:"N"}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{itemTotal(product.price, item.quantity)| currency:"N"}}</td>
+                <td><i class="fa fa-trash-o" ng-click="deleteFromCart(product._id)"></i></td>
+            </tr>
+            <tr></tr>
+            <tr >
+                <td></td>
+                <td></td>
+                <th colspan="2">Total Cost</th>
+                <td colspan="2">{{cartTotal() | currency:"N"}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row justify-content-center">
+            <div class="col-sm-2 ">
+                <a class="not" href="/shopping"><button class="btn" style="background-color:#9a0751;color: white"><i class="fa fa-arrow-left" > Back to Shop</i></button></a>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+</div>
+<script src="/static/js/angular.min.js"> </script>
+<script src="/static/js/bespoke_app.js"> </script>
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/ng_infinite_scroll.min.js"></script>
+</body>
+</html>

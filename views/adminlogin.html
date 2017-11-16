@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Bespoke Cakes NG</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid" >
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: white;" id="navbig">
+        <a class="navbar-brand mx-auto" href="/" style="font-family: 'Lobster', Georgia, Times, serif;font-size: 35px">
+            Bespoke &nbsp;<img src="/images/Bespokeicon%20.jpg" width="70" height="70" class="d-inline-block align-top" alt="">
+            &nbsp;Cakes NG
+            <span class="sr-only">(current)</span>
+        </a>
+    </nav>
+    <section id="log">
+    <div class="row justify-content-center" style="margin-top: 100px">
+        <div class="col-md-4" id="login">
+            <h3>ADMIN LOGIN</h3><hr/>
+            <div class="container">
+                <form method="post">
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <p><b><%= msg %></b></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="joe" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-sm-12">
+                            <button type="submit" class="loginmodal-submit">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"> </script>
+</body>
+</html>

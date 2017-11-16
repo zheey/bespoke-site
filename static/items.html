@@ -1,0 +1,96 @@
+<nav class="navbar sticky-top navbar-expand-sm navbar-light " style="background-color: #E3AFBC;" ng-show="isLoggedIn">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav ml-auto" style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item" >
+                <a class="nav-link"> Welcome to Bespoke Cakes, {{user.firstname}} </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">LOG OUT</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: white;" id="navbig">
+    <a class="navbar-brand abs" href="/" style="font-family: 'Lobster', Georgia, Times, serif;font-size: 35px">
+        Bespoke &nbsp;<img src="/images/Bespokeicon%20.jpg" width="70" height="70" class="d-inline-block align-top" alt="">
+        &nbsp;Cakes NG
+        <span class="sr-only">(current)</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav " style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item">
+                <a class="nav-link" href="/wedding">WEDDING ORDER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/careers">CAREERS</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+            <li class="nav-item">
+                <a class="nav-link" href="/blog">BLOG</a>
+            </li>
+            <li ng-hide="isLoggedIn" class="nav-item" ng-click="login()">
+                <a class="nav-link" href="/login">LOGIN</a>
+            </li>
+            <li ng-show="isLoggedIn" class="nav-item">
+                <a class="nav-link" href="/profile">MY PROFILE</a>
+            </li>
+            <li class="nav-item" >
+                <a href="/shopping/cart" class="nav-link" ><i class="fa fa-shopping-cart fa-2x" ></i>
+                    <span class='round round-sm green' ng-show="isLoggedIn">
+                          {{user.cart.length}}
+                      </span></a>
+            </li>
+            <li ng-hide="user.cart.length==0" class="nav-item">
+                <a class="nav-link" ng-click="checkout()" href="/shopping/checkout"><button class="btn" style="background-color: #5d001E; color: white">Checkout<i class="fa fa-shopping-cart" ></i></button></a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<section id="order" style="padding-top: 50px;">
+<div class="container-fluid" >
+    <div class="row no-gutters" >
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="sidebar">
+                        <h3>CATEGORIES</h3>
+                        <div class="checklist categories">
+                            <ul>
+                                <li ng-click="reloadPage()"><a href=""><i class="fa fa-check"></i>All Items</a></li>
+                            </ul>
+                            <ul ng-repeat="menu in Menus">
+                                <li ng-click="setCategory(menu)"><a href=""><i class="fa fa-check"></i>{{menu}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10" style="padding: 30px;height: 600px; overflow-y: scroll"
+             infinite-scroll='getMoreData()'>
+            <div class="row justify-content-between">
+                <div class="col-md-4" ng-repeat="product in Products" style="margin-bottom: 100px">
+                    <img class="image" src="../images/{{product.imagefile}}" alt="" />
+                    <div class="middle" ng-show="isLoggedIn" ng-click="addCart(product._id);isAdded=true">Add to cart</div>
+                    <a href="/login"> <div class="middle" ng-hide="isLoggedIn">Login to Buy</div></a>
+                    <div class="stats-container">
+                        <span class="product_price">{{product.price|currency:"N"}}</span>
+                        <span class="product_name">{{product.name}}</span>
+                        <p>{{product.description}}</p>
+                        <p  ng-show="user.cart.product.isadded==true" style="color: green">Added to cart<i class="fa fa-check"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

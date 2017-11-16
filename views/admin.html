@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bespokeApp" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Bespoke Cakes NG</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Molengo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid" ng-controller="bespokeController">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background-color: white;" id="navbig">
+        <a class="navbar-brand abs" href="/" style="font-family: 'Lobster', Georgia, Times, serif;font-size: 35px">
+            Bespoke &nbsp;<img src="/images/Bespokeicon%20.jpg" width="70" height="70" class="d-inline-block align-top" alt="">
+            &nbsp;Cakes NG
+            <span class="sr-only">(current)</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav " style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+                <li class="nav-item">
+                    <a class="nav-link" href="/shopping">BESPOKE SHOP</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" style="font-size: small; font-family: 'Raleway', Helvetica, Arial, sans-serif;">
+                <li class="nav-item" >
+                    <a class="nav-link"> <%= msg %> </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/logout">LOG OUT</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Login Modal -->
+
+    </nav>
+    <section id="tab" style="padding: 10px;">
+        <div class="row no-gutters" >
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="sidebar" style="background-color: #5d001E">
+                            <h3 style="color: white;"><i class="fa fa-dashboard"></i> &nbsp;DASHBOARD</h3>
+                            <div class="checklist categories">
+                                <ul >
+                                    <li ><i class="fa fa-user-plus" style="color: white;"></i><a href="/admin/newadmin">Add Admin</a></li>
+                                    <li ><a href="/admin/products/add"><i class="fa fa-plus" style="color: white;"></i>Add Products</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10" style="padding: 30px;">
+                <div class="row justify-content-between" >
+                    <div class="col-xl-3 col-sm-6" >
+                        <div class="card bg-success text-white h-100">
+                            <div class="card-body bg-success">
+                                <div class="rotate" style="margin-bottom: 4px">
+                                    <i class="fa fa-user-plus fa-3x"></i>
+                                </div>
+                                <h6 class="text-uppercase"></h6>
+                                <h1 class="display-5"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6" >
+                        <div class="card bg-danger text-white h-100">
+                            <div class="card-body bg-danger">
+                                <div class="rotate" style="margin-bottom: 4px">
+                                    <i class="fa fa-user-times fa-3x"></i>
+                                </div>
+                                <h6 class="text-uppercase"></h6>
+                                <h1 class="display-5"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6" >
+                        <div class="card bg-info text-white h-100">
+                            <div class="card-body bg-info">
+                                <div class="rotate" style="margin-bottom: 4px">
+                                    <i class="fa fa-money fa-3x"></i>
+                                </div>
+                                <h6 class="text-uppercase"></h6>
+                                <h1 class="display-5"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6" >
+                        <div class="card bg-warning text-white h-100">
+                            <div class="card-body bg-warning">
+                                <div class="rotate" style="margin-bottom: 4px">
+                                    <i class="fa fa-hourglass-2 fa-3x"></i>
+                                </div>
+                                <h6 class="text-uppercase"></h6>
+                                <h1 class="display-5"></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="row" style="margin-top: 40px">
+                    <div class="col-md-6" style="margin-top: 20px">
+                        <h5>Project Completion Status</h5>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{progress()|number:'1'}};height: 30px"
+                                 aria-valuenow="{{progress()|number:'1'}}" aria-valuemin="0" aria-valuemax="100">{{progress()|number:'1'}}%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="margin-top: 50px">
+                        {{progress()|number:'1'}}% Completed
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"> </script>
+<script src="/static/js/angular.min.js"> </script>
+<script src="/static/js/bespoke_app.js"> </script>
+</body>
+</html>
